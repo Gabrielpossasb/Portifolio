@@ -1,13 +1,24 @@
 import * as React from 'react';
-import {useEffect,useState} from 'react';
+import { useEffect,useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import * as WebBrowser from 'expo-web-browser';
-import Modal from './Modal.js';
+import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
+import { RobotoCondensed_400Regular } from '@expo-google-fonts/roboto-condensed';
+import AppLoading from 'expo-app-loading';
+import { LinearGradient } from 'expo-linear-gradient';
+import { navigationRef } from './RootNavigation.js';
+import * as RootNavigation from './RootNavigation.js'
+//import * as WebBrowser from 'expo-web-browser';
+
+import Sobre from './sobreScreen.js';
+import Projetos from './projetosScreen.js';
+import Home from './homeScreen.js';
+
 
 
 import { LogBox } from 'react-native';
@@ -15,169 +26,115 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 //LogBox.ignoreAllLogs();//Ignore all log notifications
 
 function HomeScreen({navigation}) {
+
   return (
-    <View style={{padding:15,flex:1}}>
-    <ScrollView contentContainerStyle={{padding:20}} style={styles.container}>
-        <Text style={styles.textHeader}>Para onde você deseja navegar?</Text>
-
-    <TouchableOpacity onPress={()=>navigation.navigate('Home')} style={styles.btnNavigation}>
-      <Ionicons name="md-home" size={29} color='white' />
-      <Text style={{color:'white',marginTop:8,marginLeft:8}}>Home</Text>
-    </TouchableOpacity>
-
-    <TouchableOpacity onPress={()=>navigation.navigate('Sobre')} style={styles.btnNavigation}>
-      <Ionicons name="ios-information-circle" size={29} color='white' />
-      <Text style={{color:'white',marginTop:8,marginLeft:8}}>Sobre</Text>
-    </TouchableOpacity>
-
-    <TouchableOpacity onPress={()=>navigation.navigate('Portifolio')} style={styles.btnNavigation}>
-      <Ionicons name="ios-list" size={29} color='white' />
-      <Text style={{color:'white',marginTop:8,marginLeft:8}}>Portfólio</Text>
-    </TouchableOpacity>
-
-    </ScrollView>
-
-</View>
+    <View style={{flex:1}}>
+      <Home></Home>
+    </View>
   );
 }
 
 function SobreScreen({navigation}) {
 
-  const [showModal, setShowModal] = useState(false);
-
-
-  const abrirModalContato = () =>{
-    setShowModal(!showModal);
-  }
-
-
   return (
-    <View style={{flex:1,}}>
-      {
-        (showModal)?
-          <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
-        :
-          <View></View>
-      }
+    <View style={{flex:1}}>
 
-      <View style={{flex:1, padding:10}}>
-        <ScrollView contentContainerStyle={{padding:20}} style={styles.container}>
-          
-          <View style={{alignItems:'center'}}>
-            <Text style={{fontSize:28, marginTop:10}}>Gabriel Abraão Possas Borges</Text>
-            <Image style={{width:250, height:250, marginTop:20, alignContent:'center'}} source={require('./assets/Screenshot_2.png')}></Image>
-          </View>
-          <View>
-            
-            <Text style={{fontSize:18, marginTop:20}}>
-              variatio of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-            </Text>
-          </View>
-
-        </ScrollView>
-
-        <View style={{justifyContent:'flex-end', width:'100%'}}>
-          <TouchableOpacity onPress={()=>abrirModalContato()} style={{backgroundColor:'#5f5380'}}>
-            <Text style={{textAlign:'center', color:'rgb(240,240,240)', padding:10, fontSize:20}}>Contato</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Sobre></Sobre>   
+               
     </View>
   );
 }
 
-function PortifolioScreen({navigation}) {
-  const [images, setImages] = useState([
-    {
-      img: require('./assets/Screenshot_1.png'),
-      width:0,
-      height:0,
-      ratio:0,
-      website:'https://cursos.dankicode.com'
-    },
-    {
-      img: require('./assets/Screenshot_2.png'),
-      width:0,
-      height:0,
-      ratio:0,
-      website:'https://cursos.dankicode.com'
-    },
-  ])
-
-  const [windowWidth,setWindowWidth] = useState(0);
-
-  useEffect(() => {
-
-    let windowWidthN = Dimensions.get('window').width;
-
-    setWindowWidth(windowWidthN - 30 - 40);
-
-  }, [])
-  
-
-  const abrirNavegador = async () => {
-    alert('Funcionou');
-  }
-
+function ProjetosScreen({navigation}) {
 
   return (
-    <View style={{padding:15,flex:1}}>
-      <ScrollView contentContainerStyle={{padding:20}} style={styles.container}>
-        <Text style={styles.textHeader}>Os últimos projetos!</Text>
-        
-         {
-           images.map(function(val){
-              return (
-                <View style={styles.parentImage}>
-                  <Image style={{width:windowWidth,height:300,resizeMode:'stretch'}} source={val.img}/>
-
-                  <TouchableOpacity onPress={() => abrirNavegador()} 
-                  style={{width:windowWidth, padding:10, backgroundColor:'#5f5380',}}>
-
-                    <Text style={{textAlign:'center',color:'white',fontSize:18}}>Abrir no navegador!</Text>
-                  </TouchableOpacity>
-
-                </View>
-              )
-           })
-         }
-      </ScrollView>
+    <View style={{flex:1}}>
+      <Projetos></Projetos>
     </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+function FormacaoScreen({navigation}) {
+  return(
+    <View>
+
+    </View>
+  );
+}
+
+//const Tab = createBottomTabNavigator();
+//const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    RobotoCondensed_400Regular, BebasNeue_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator
+    <NavigationContainer ref={navigationRef}>
+      <Drawer.Navigator
+        
+        useLegacyImplementation={true}
+        initialRouteName='Home'
+        //defaultStatus={'open'}
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          drawerIcon: ({ focused, color, size }) => {
             let iconName;
 
             if (route.name === 'Home') {
               iconName = focused
                 ? 'ios-home'
                 : 'ios-home';
-            } else if (route.name === 'Portifolio') {
-              iconName = focused ? 'ios-list' : 'ios-list';
+            } else if (route.name === 'Projetos') {
+              iconName = focused ? 'folder-open-outline' : 'folder-open-outline';
             } else if (route.name === 'Sobre'){
               iconName = focused ? 'ios-information-circle' : 'ios-information-circle';
+            } else if (route.name === 'Formacao'){
+              iconName = focused ? 'school-outline' : 'school-outline';
             }
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
+          drawerActiveTintColor: 'tomato',
+          drawerInactiveTintColor: 'gray',
+          drawerPosition: 'right',
+          headerTitleAlign:'center',
+                 
+          
+          headerRight:() => 
+          <TouchableOpacity onPress={() => RootNavigation.navigate('Home')} style={{marginRight:10}}>
+            <Ionicons name='chevron-back-circle-outline' color='black' size={30}/>
+          </TouchableOpacity>
+          ,
+          
+          headerStyle: {height:50}
+          
+          //headerShown:false
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Sobre" component={SobreScreen} />
-        <Tab.Screen name="Portifolio" component={PortifolioScreen} />
-      </Tab.Navigator>
+        <Drawer.Screen name="Home" component={HomeScreen} 
+        options={{ title: 'Home', 
+          
+        }}/>
+        <Drawer.Screen name="Sobre" component={SobreScreen} options={{ title: 'Sobre' , 
+          
+        }}/>
+        <Drawer.Screen name="Projetos" component={ProjetosScreen} options={{ title: 'Projetos',
+          
+        }} />
+        <Drawer.Screen name="Formacao" component={FormacaoScreen} options={{ title: 'Formação',
+          
+        }} />
+      </Drawer.Navigator>
+
+    
     </NavigationContainer>
   );
 }
@@ -219,5 +176,45 @@ const styles = StyleSheet.create({
     top:'50%',
     marginTop:-185,
     padding:10
+  },
+  bntScreens: {
+    //backgroundColor:'rgba(205, 94, 74, 1)',
+    backgroundColor:'rgba(26, 26, 26,1)',
+    width:170,
+    height:160,
+    margin:(20, 10, 10, 10),
+    borderRadius:20,
+    borderColor:'rgba(150,150,150,1)',
+    borderRightWidth:4,
+    borderBottomWidth:4,
+    padding:5,
+    alignItems:'center',
+    justifyContent:'center'
+  }, 
+  bntScreensText: {
+    padding:5,
+    color:'#c7417b',
+    fontSize:18,
+    fontFamily:BebasNeue_400Regular
   }
 })
+
+
+/*
+      {
+        (showModal)?
+          <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
+        :
+          <View></View>
+      }
+
+
+
+
+
+
+      <LinearGradient
+        colors={['#57595C', '#16384e']}
+        style={{left:0, right:0, top:0, position:'absolute', height:'100%'}}
+      />
+*/

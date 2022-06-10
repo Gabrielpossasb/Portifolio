@@ -3,6 +3,9 @@ import {useEffect,useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 import { db } from './firebase.js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+
 
 export default function Modal(props){
 
@@ -22,28 +25,38 @@ export default function Modal(props){
 
     return(
         <View style={styles.modalParent}>
-            <View style={{position:'absolute', right:20, top:20, width:50, height:50, backgroundColor:'#fff', zIndex:2, justifyContent:'center', borderRadius:15}}>
-                <TouchableOpacity style={{width:'100%', height:'100%', justifyContent:'center'}} 
-                    onPress={() => props.setShowModal(!props.showModal)}>
-                    <Text style={{color:'black', textAlign:'center'}}>X</Text>
-                </TouchableOpacity>
-            </View>
-
             <View style={styles.boxModal}>
+
+                <View style={{ alignItems:'flex-start', marginVertical:(10, 10), padding:10}}>
+                    <Text style={{}}>{`WhatshApp/Cel: (67) 9 9935-9933`}</Text> 
+                    <Text>{`Linkedin: www.linkedin.com/in/gabriel-borges-p`}</Text>
+                    <Text>{`GitHub: https://github.com/Gabrielpossasb`}</Text>
+                    <Text>{`Gmail: gabrielpossasb@gmail.com`}</Text>
+                </View>
+                
+                <TouchableOpacity onPress={() => props.setShowModal(!props.showModal)}
+                    style={{ justifyContent:'center', alignItems:'center', right:10, top:10, position:'absolute', backgroundColor:'rgba(0,0,0,0.8)', borderRadius:50
+                }}>
+                    <Ionicons name="close-outline" size={20} color='#c7417b' style={{padding:5}}/>
+                </TouchableOpacity>
+
                 <Text style={{...styles.textHeader, fontSize:15}}>Qual seu nome?</Text>
                 <TextInput 
-                    style={{height:40, width:'100%', borderColor:'#ccc', borderWidth:1, marginBottom:20}} 
+                    style={{height:40, width:'100%', borderColor:'#ccc', borderWidth:1, marginBottom:20, borderRadius:10}} 
                     multiline={true} numberOfLines={4} onChangeText={(text)=>setNome(text)} value={nome}
                 ></TextInput>
 
                 <Text style={{...styles.textHeader, fontSize:15}}>Qual sua mensagem?</Text>
                 <TextInput 
-                    style={{height:90, width:'100%', borderColor:'#ccc', borderWidth:1, marginBottom:20}} 
+                    style={{height:90, width:'100%', borderColor:'#ccc', borderWidth:1, marginBottom:20, borderRadius:10}} 
                     multiline={true} numberOfLines={4} onChangeText={(text)=>setMensagem(text)} value={mensagem}
                 ></TextInput>
 
-                <TouchableOpacity onPress={()=>enviarMensagem()} style={{backgroundColor:'#5f5380'}}>
-                    <Text style={{textAlign:'center', color:'rgb(240,240,240)', padding:10, fontSize:20}}>Enviar</Text>
+                <TouchableOpacity 
+                    onPress={()=>enviarMensagem()} 
+                    style={{backgroundColor:'rgba(26, 26, 26,1)', borderRadius:50, right:20, bottom:20, position:'absolute'
+                }}>
+                    <Ionicons name="rocket-outline" size={34} color='#c7417b' style={{padding:10}}/>
                 </TouchableOpacity>
             </View>
         </View>
@@ -62,12 +75,12 @@ const styles = StyleSheet.create({
     },
     boxModal:{
       backgroundColor:'white',
-      height:370,
-      width:'100%',
-      position:'absolute',
+      width:'90%',
+      height:'70%',
       left:0,
-      top:'50%',
-      marginTop:-185,
-      padding:10
+      top:90,
+      padding:10,
+      borderRadius:15,
+      alignSelf:'center'
     }
   })
