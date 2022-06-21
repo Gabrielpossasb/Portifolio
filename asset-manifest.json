@@ -1,0 +1,32 @@
+{
+  "files": {
+    "app.js": "/Portifolio/static/js/app.0a93657e.chunk.js",
+    "app.js.map": "/Portifolio/static/js/app.0a93657e.chunk.js.map",
+    "runtime~app.js": "/Portifolio/static/js/runtime~app.3f60544a.js",
+    "runtime~app.js.map": "/Portifolio/static/js/runtime~app.3f60544a.js.map",
+    "static/js/2.bbe91a1c.chunk.js": "/Portifolio/static/js/2.bbe91a1c.chunk.js",
+    "static/js/2.bbe91a1c.chunk.js.map": "/Portifolio/static/js/2.bbe91a1c.chunk.js.map",
+    "fonts/BebasNeue_400Regular.ttf": "/Portifolio/./fonts/BebasNeue_400Regular.ttf",
+    "fonts/Ionicons.ttf": "/Portifolio/./fonts/Ionicons.ttf",
+    "fonts/RobotoCondensed_300Light.ttf": "/Portifolio/./fonts/RobotoCondensed_300Light.ttf",
+    "fonts/RobotoCondensed_300Light_Italic.ttf": "/Portifolio/./fonts/RobotoCondensed_300Light_Italic.ttf",
+    "fonts/RobotoCondensed_400Regular.ttf": "/Portifolio/./fonts/RobotoCondensed_400Regular.ttf",
+    "fonts/RobotoCondensed_400Regular_Italic.ttf": "/Portifolio/./fonts/RobotoCondensed_400Regular_Italic.ttf",
+    "fonts/RobotoCondensed_700Bold.ttf": "/Portifolio/./fonts/RobotoCondensed_700Bold.ttf",
+    "fonts/RobotoCondensed_700Bold_Italic.ttf": "/Portifolio/./fonts/RobotoCondensed_700Bold_Italic.ttf",
+    "favicon-16.png": "/Portifolio/favicon-16.png",
+    "favicon-32.png": "/Portifolio/favicon-32.png",
+    "favicon.ico": "/Portifolio/favicon.ico",
+    "index.html": "/Portifolio/index.html",
+    "manifest.json": "/Portifolio/manifest.json",
+    "serve.json": "/Portifolio/serve.json",
+    "static/js/2.bbe91a1c.chunk.js.LICENSE.txt": "/Portifolio/static/js/2.bbe91a1c.chunk.js.LICENSE.txt",
+    "static/media/Screenshot_1.png": "/Portifolio/static/media/Screenshot_1.c462ef60.png",
+    "static/media/Screenshot_2.png": "/Portifolio/static/media/Screenshot_2.77af699f.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.3f60544a.js",
+    "static/js/2.bbe91a1c.chunk.js",
+    "static/js/app.0a93657e.chunk.js"
+  ]
+}
